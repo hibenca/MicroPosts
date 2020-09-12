@@ -6,7 +6,6 @@ class UI {
         this.post = document.querySelector('#posts');
         this.post = document.querySelector('#posts');
         this.post = document.querySelector('#posts');
-
     }
 
 showPosts(posts) {
@@ -30,8 +29,44 @@ showPosts(posts) {
     });
     
     this.post.innerHTML = output;
-
     }
+
+    showAlert(message, className) {
+        this.clearAlert();
+
+        // Create div
+        const div = document.createElement('div');
+        // Add classes
+        div.className = className;
+        // Add text
+        div.appendChild(document.createTextNode(message));
+        // Get parent
+        const container = document.querySelector('.postsContainer')
+        // Get posts div
+        const posts = document.querySelector('#posts');
+        // Insert alert div
+        container.insertBefore(div, posts);
+        // Timeout
+        setTimeout(() => {
+            this.clearAlert();
+        }, 3000)
+    }
+
+
+    clearAlert() {
+        // current alert
+        const currentAlert = document.querySelector('.alert');
+        // if alert remove
+        if (currentAlert) {
+            currentAlert.remove();
+        }
+    }
+
+    clearFields() {
+        this.titleInput.value = '';
+        this.bodyInput.value = '';
+    }
+
 }
 
 export const ui = new UI();
