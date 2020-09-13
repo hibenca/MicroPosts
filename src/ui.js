@@ -1,18 +1,20 @@
+// UI class
 class UI {
     constructor() {
         this.post = document.querySelector('#posts');
         this.titleInput = document.querySelector('#title');
         this.bodyInput = document.querySelector('#body');
-        this.post = document.querySelector('#posts');
-        this.post = document.querySelector('#posts');
-        this.post = document.querySelector('#posts');
+        this.idInput = document.querySelector('#id');
+        this.postSubmit = document.querySelector('.post-submit');
+        this.forState = 'add';
     }
 
-showPosts(posts) {
-    let output = '';
+    // Show all posts
+    showPosts(posts) {
+        let output = '';
 
-    posts.forEach(function(post) {
-        output += `
+        posts.forEach(function (post) {
+            output += `
         <div class="card mb-3">
             <div class="card-body">
                 <h4 class="card-title">${post.title}</h4>
@@ -26,11 +28,12 @@ showPosts(posts) {
             </div>
         </div>
         `;
-    });
-    
-    this.post.innerHTML = output;
+        });
+
+        this.post.innerHTML = output;
     }
 
+    // Show alert message
     showAlert(message, className) {
         this.clearAlert();
 
@@ -52,7 +55,7 @@ showPosts(posts) {
         }, 3000)
     }
 
-
+    // Clear alert message
     clearAlert() {
         // current alert
         const currentAlert = document.querySelector('.alert');
@@ -61,12 +64,30 @@ showPosts(posts) {
             currentAlert.remove();
         }
     }
-
+    // Clear all fields
     clearFields() {
         this.titleInput.value = '';
         this.bodyInput.value = '';
     }
 
+    // Fill form to edit
+    fillForm(data) {
+        this.titleInput.value = data.title;
+        this.bodyInput.value = data.body;
+        this.idInput.value = data.id;
+
+        this.changeFormState('edit');
+    }
+
+    // Change the form state
+    changeFormState (type) {
+        if (type === 'edit') {
+            console.log('edit');
+            document.querySelector('.btn').innerHTML = "Edit";
+        } else {
+            
+        }
+    }
 }
 
 export const ui = new UI();
