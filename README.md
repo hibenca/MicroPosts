@@ -1,6 +1,6 @@
 # Calorie Counter
 
-![MicroPosts]()
+![MicroPosts](https://i.postimg.cc/P5n52MhC/Micro-Posts.jpg)
 
 # Tools used
 

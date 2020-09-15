@@ -6,6 +6,7 @@ class UI {
         this.bodyInput = document.querySelector('#body');
         this.idInput = document.querySelector('#id');
         this.postSubmit = document.querySelector('.post-submit');
+        this.postCancel = document.querySelector('.post-cancel');
         this.forState = 'add';
     }
 
@@ -79,13 +80,29 @@ class UI {
         this.changeFormState('edit');
     }
 
+    // Clear ID hidden values
+    clearIdInput() {
+        this.idInput.value = '';
+    }
+
     // Change the form state
-    changeFormState (type) {
+    changeFormState(type) {
         if (type === 'edit') {
-            console.log('edit');
-            document.querySelector('.btn').innerHTML = "Edit";
+            this.postSubmit.textContent = 'Update Post';
+            this.postSubmit.className = 'post-submit btn btn-warning btn-block';
+            this.postCancel.style = 'display: block'
         } else {
-            
+            this.postSubmit.textContent = 'Post It';
+            this.postSubmit.className = 'post-submit btn btn-primary btn-block';
+            // Remove cancel btn
+            this.postCancel.style = 'display: none'
+            if (document.querySelector('.post-cancel')) {
+                this.postCancel.style = 'display: none'
+            }
+            // Clear ID from hidden field
+            this.clearIdInput();
+            // Clear text
+            this.clearFields();
         }
     }
 }
